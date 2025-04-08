@@ -1,0 +1,18 @@
+Package: logor
+Title: Fetch Company and Cryptocurrency Brand Logos
+Version: 0.0.0.9000
+Authors@R: 
+    person("Giovanni", "Colitti", , "g.a.colitti@gmail.com", role = c("aut", "cre"))
+Description: A package to fetch and download brand logos.
+    Uses various APIs to retrieve high-quality brand images for any website, company or cryptocurrency.
+License: MIT + file LICENSE
+Imports:
+    httr2
+Suggests: 
+    devtools,
+    testthat
+Config/testthat/edition: 3
+Encoding: UTF-8
+RoxygenNote: 7.3.2
+Remotes:
+    gacolitti/yfinancer
