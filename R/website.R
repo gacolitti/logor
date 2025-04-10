@@ -17,10 +17,19 @@
 #' }
 #' @export
 get_website_logos <- function(websites, output = c("png", "url", "request", "response", "raw"), file_paths = NULL) {
-  if (is.null(websites)) {
-    return(NULL)
-  }
   output <- match.arg(output)
+  if (length(websites) == 0) {
+    stop("No websites provided")
+  }
+
+  if (!is.null(file_paths) && length(websites) != length(file_paths)) {
+    stop("Number of websites must match number of file paths")
+  }
+
+  # Handle file paths for png output
+  if (output == "png") {
+    file_paths <- handle_png_paths(websites, file_paths)
+  }
 
   # Clean websites
   websites <- sub("^https?://", "", websites)
