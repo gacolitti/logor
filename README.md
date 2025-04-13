@@ -1,34 +1,76 @@
-# logor
 
-An R package to fetch company and cryptocurrency brand logos.
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# logor <img src="man/figures/logo.png" align="right" height="120" alt="" />
+
+<!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/logor)](https://CRAN.R-project.org/package=logor)
+<!-- badges: end -->
+
+The goal of logor is to provide a simple interface for fetching company
+and cryptocurrency brand images/logos. It leverages multiple APIs
+including CoinDesk and CryptoCompare for cryptocurrency data, and
+extracts company logos directly from their websites.
 
 ## Installation
 
-You can install the development version of logor from GitHub with:
+You can install the development version of logor from GitHub:
 
-```r
+``` r
 # install.packages("remotes")
 remotes::install_github("gacolitti/logor")
 ```
 
 ## Usage
 
-```r
+### Company Logos
+
+``` r
 library(logor)
 
-# Get a company logo URL
-company_logo <- get_company_logo("AAPL")
+img_path <- "man/figures/MSFT.png"
 
-# Get a cryptocurrency logo URL
-crypto_logo <- get_crypto_logo("BTC")
+# Fetch and save a public company logo 
+logor::get_company_logos("MSFT", file_paths = img_path)
+#> Using existing authentication file.
+#> $MSFT
+#> [1] "man/figures/MSFT.png"
+
+knitr::include_graphics(img_path)
 ```
 
-## Features
+<img src="man/figures/MSFT.png" width="100px" />
 
-- Fetch company logos using company website information
-- Fetch cryptocurrency logos from CryptoCompare
-- Simple and easy-to-use interface
+### Website Logos
 
-## License
+``` r
+img_path <- "man/figures/twitter.png"
 
-MIT
+# Fetch and save a website logo by URL
+logor::get_website_logos("https://www.twitter.com", file_paths = img_path)
+#> $twitter.com
+#> [1] "man/figures/twitter.png"
+
+knitr::include_graphics(img_path)
+```
+
+<img src="man/figures/twitter.png" width="100px" />
+
+### Cryptocurrency Logos
+
+``` r
+img_path <- "man/figures/BTC.png"
+
+# Fetch and save a cryptocurrency logo by symbol
+logor::get_crypto_logos("BTC", file_paths = img_path)
+#> $BTC
+#> [1] "man/figures/BTC.png"
+
+knitr::include_graphics(img_path)
+```
+
+<img src="man/figures/BTC.png" width="100px" />

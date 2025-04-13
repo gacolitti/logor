@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100px"
+  # out.width = "100%"
 )
 ```
 
@@ -20,13 +21,47 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/logor)](https://CRAN.R-project.org/package=logor)
 <!-- badges: end -->
 
-The goal of logor is to ...
+The goal of logor is to provide a simple interface for fetching company and cryptocurrency brand images/logos. It leverages multiple APIs including CoinDesk and CryptoCompare for cryptocurrency data, and extracts company logos directly from their websites.
 
 ## Installation
 
-You can install the development version of logor like so:
+You can install the development version of logor from GitHub:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# install.packages("remotes")
+remotes::install_github("gacolitti/logor")
 ```
 
+## Usage
+
+### Company Logos
+```{r}
+library(logor)
+
+img_path <- "man/figures/MSFT.png"
+
+# Fetch and save a public company logo 
+logor::get_company_logos("MSFT", file_paths = img_path)
+
+knitr::include_graphics(img_path)
+```
+
+### Website Logos
+```{r}
+img_path <- "man/figures/twitter.png"
+
+# Fetch and save a website logo by URL
+logor::get_website_logos("https://www.twitter.com", file_paths = img_path)
+
+knitr::include_graphics(img_path)
+```
+
+### Cryptocurrency Logos
+```{r}
+img_path <- "man/figures/BTC.png"
+
+# Fetch and save a cryptocurrency logo by symbol
+logor::get_crypto_logos("BTC", file_paths = img_path)
+
+knitr::include_graphics(img_path)
+```
