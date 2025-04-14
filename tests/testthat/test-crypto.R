@@ -4,11 +4,14 @@ test_that("get_crypto_logos validates input parameters", {
 
   # Test missing path with png output
   expect_error(get_crypto_logos("BTC", output = "png", path = NULL))
+
+  # Test empty symbols vector
+  expect_error(get_crypto_logos(character(0)))
 })
 
 test_that("get_crypto_logos handles empty or invalid symbols", {
-  # Test empty symbols vector
-  expect_error(get_crypto_logos(character(0)))
+  skip_if_offline()
+  skip_on_cran()
 
   # Test invalid symbol
   expect_warning(result <- get_crypto_logos("INVALID"))
@@ -42,6 +45,7 @@ test_that("find_coin_data handles invalid input", {
 
 test_that("get_crypto_logos returns correct output types", {
   skip_if_offline()
+  skip_on_cran()
 
   # Test URL output
   result <- get_crypto_logos("BTC", output = "url")
@@ -70,6 +74,7 @@ test_that("get_crypto_logos returns correct output types", {
 
 test_that("get_crypto_logos handles multiple symbols", {
   skip_if_offline()
+  skip_on_cran()
 
   symbols <- c("BTC", "ETH")
   result <- get_crypto_logos(symbols, output = "url")
@@ -85,6 +90,7 @@ test_that("get_crypto_logos handles multiple symbols", {
 
 test_that("get_crypto_logos can save PNG files", {
   skip_if_offline()
+  skip_on_cran()
 
   # Create temporary directory
   temp_dir <- tempfile()

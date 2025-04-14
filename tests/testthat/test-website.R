@@ -1,20 +1,17 @@
 test_that("get_website_logos validates input parameters", {
   # Test NULL input
-  expect_null(get_website_logos(NULL))
+  expect_error(get_website_logos(NULL))
 
   # Test invalid output parameter
   expect_error(get_website_logos("example.com", output = "invalid"))
-})
 
-test_that("get_website_logos handles empty or invalid websites", {
   # Test empty websites vector
-  result <- get_website_logos(character(0))
-  expect_type(result, "list")
-  expect_length(result, 0)
+  expect_error(get_website_logos(character(0)))
 })
 
 test_that("get_website_logos cleans website URLs correctly", {
   skip_if_offline()
+  skip_on_cran()
 
   websites <- c(
     "http://example.com",
