@@ -9,6 +9,9 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/logor)](https://CRAN.R-project.org/package=logor)
+[![R-CMD-check](https://github.com/gacolitti/logor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gacolitti/logor/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/gacolitti/logor/graph/badge.svg)](https://app.codecov.io/gh/gacolitti/logor)
 <!-- badges: end -->
 
 The goal of logor is to provide a simple interface for fetching company
