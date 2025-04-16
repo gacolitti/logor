@@ -7,7 +7,8 @@ Description: Retrieve high-quality brand images for any website, company or cryp
 License: MIT + file LICENSE
 Imports:
     httr2,
-    yfinancer
+    yfinancer,
+    stats
 Suggests: 
     devtools,
     testthat

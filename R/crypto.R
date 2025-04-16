@@ -88,11 +88,11 @@ get_crypto_logos <- function(symbols, output = c("png", "url", "request", "respo
   # Extract coins data or return empty result if no data
   if (is.null(data$Data)) {
     warning("No data returned from CryptoCompare API")
-    return(setNames(vector("list", length(symbols)), symbols))
+    return(stats::setNames(vector("list", length(symbols)), symbols))
   }
 
   # Create result list with symbol names
-  result <- setNames(vector("list", length(symbols)), symbols)
+  result <- stats::setNames(vector("list", length(symbols)), symbols)
 
   # Process each symbol
   for (symbol in symbols) {

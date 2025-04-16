@@ -50,5 +50,5 @@ get_website_logos <- function(websites, output = c("png", "url", "request", "res
     }, urls, websites, file_paths)
   }
 
-  setNames(results, websites)
+  stats::setNames(results, websites)
 }

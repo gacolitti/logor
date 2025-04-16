@@ -44,7 +44,7 @@ get_company_logos <- function(symbols, output = c("png", "url", "request", "resp
   })
   if (length(tickers) == 0) {
     warning("No symbols found")
-    return(setNames(vector("list", length(symbols)), symbols))
+    return(stats::setNames(vector("list", length(symbols)), symbols))
   }
 
   # Get company info including website for all tickers
@@ -57,10 +57,10 @@ get_company_logos <- function(symbols, output = c("png", "url", "request", "resp
       )
     }
   )
-  info <- setNames(info, tickers$symbol)
+  info <- stats::setNames(info, tickers$symbol)
 
   # Create result list with symbol names
-  result <- setNames(vector("list", length(symbols)), symbols)
+  result <- stats::setNames(vector("list", length(symbols)), symbols)
 
   # Get valid websites
   valid_idx <- seq_along(info)[!sapply(info, function(x) is.null(x$website))]
