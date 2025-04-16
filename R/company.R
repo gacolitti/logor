@@ -48,7 +48,16 @@ get_company_logos <- function(symbols, output = c("png", "url", "request", "resp
   }
 
   # Get company info including website for all tickers
-  info <- yfinancer::get_tickers_info(tickers, modules = "summaryProfile")
+  info <- lapply(
+    tickers,
+    function(ticker) {
+      tryCatch(
+        yfinancer::get_info(ticker, modules = "summaryProfile"),
+        error = function(e) NULL
+      )
+    }
+  )
+  info <- setNames(info, tickers$symbol)
 
   # Create result list with symbol names
   result <- setNames(vector("list", length(symbols)), symbols)
