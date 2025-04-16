@@ -71,7 +71,7 @@ get_company_logos <- function(symbols, output = c("png", "url", "request", "resp
   result <- stats::setNames(vector("list", length(symbols)), symbols)
 
   # Get valid websites
-  valid_idx <- seq_along(info)[!sapply(info, function(x) is.null(x$website))]
+  valid_idx <- seq_along(info)[sapply(info, function(x) "website" %in% names(x) && !is.null(x$website))]
   if (length(valid_idx) > 0) {
     websites <- sapply(info[valid_idx], `[[`, "website")
     logos <- get_website_logos(websites, output = output, file_paths = file_paths[valid_idx])
