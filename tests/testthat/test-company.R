@@ -20,6 +20,21 @@ test_that("get_company_logos handles invalid symbols", {
   expect_null(result$INVALID)
 })
 
+test_that("get_company_logos handles tickers where get_info fails", {
+  skip_if_offline()
+  skip_on_cran()
+
+  symbols <- c("AAPL", "SPAXX")
+  result <- get_company_logos(symbols, output = "url")
+
+  expect_named(result, symbols)
+  # SPAXX should be handled gracefully, either as error string or NULL
+  expect_true(is.character(result[["SPAXX"]]) || is.null(result[["SPAXX"]]))
+  # AAPL should return a non-NULL, non-error result (likely a URL or list)
+  expect_false(is.null(result[["AAPL"]]))
+  expect_false(identical(result[["AAPL"]], "Error Fetching Info"))
+})
+
 test_that("get_company_logos returns correct output types", {
   skip_if_offline()
   skip_on_cran()
@@ -42,6 +57,7 @@ test_that("get_company_logos returns correct output types", {
   expect_named(result, "AAPL")
   expect_s3_class(result$AAPL, "httr2_response")
 
+  # Test raw output
   # Test raw output
   result <- get_company_logos("AAPL", output = "raw")
   expect_type(result, "list")

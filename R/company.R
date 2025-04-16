@@ -53,7 +53,7 @@ get_company_logos <- function(symbols, output = c("png", "url", "request", "resp
     function(ticker) {
       tryCatch(
         yfinancer::get_info(ticker, modules = "summaryProfile"),
-        error = function(e) NULL
+        error = function(e) "Error Fetching Info"
       )
     }
   )
