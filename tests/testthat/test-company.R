@@ -25,14 +25,14 @@ test_that("get_company_logos handles tickers where get_info fails", {
   skip_on_cran()
 
   symbols <- c("AAPL", "SPAXX")
-  result <- get_company_logos(symbols, output = "url")
+  expect_warning(result <- get_company_logos(symbols, output = "url"))
 
   expect_named(result, symbols)
   # SPAXX should be handled gracefully, either as error string or NULL
   expect_true(is.character(result[["SPAXX"]]) || is.null(result[["SPAXX"]]))
   # AAPL should return a non-NULL, non-error result (likely a URL or list)
   expect_false(is.null(result[["AAPL"]]))
-  expect_false(identical(result[["AAPL"]], "Error Fetching Info"))
+  expect_false(identical(result[["AAPL"]], list(error = "Error fetching info with get_info(). Ensure the ticker supports the passed modules")))
 })
 
 test_that("get_company_logos returns correct output types", {

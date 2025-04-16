@@ -47,17 +47,25 @@ get_company_logos <- function(symbols, output = c("png", "url", "request", "resp
     return(stats::setNames(vector("list", length(symbols)), symbols))
   }
 
+  if (inherits(tickers, "yf_ticker")) {
+    symbols <- tickers$symbol
+    tickers <- list(tickers)
+  } else {
+    symbols <- tickers$symbols
+    tickers <- tickers$tickers
+  }
+
   # Get company info including website for all tickers
   info <- lapply(
     tickers,
     function(ticker) {
       tryCatch(
         yfinancer::get_info(ticker, modules = "summaryProfile"),
-        error = function(e) "Error Fetching Info"
+        error = function(e) list(error = "Error fetching info with get_info(). Ensure the ticker supports the passed modules")
       )
     }
   )
-  info <- stats::setNames(info, tickers$symbol)
+  info <- stats::setNames(info, symbols)
 
   # Create result list with symbol names
   result <- stats::setNames(vector("list", length(symbols)), symbols)

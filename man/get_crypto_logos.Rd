@@ -16,9 +16,7 @@ get_crypto_logos(
 \item{output}{Character string specifying the output type. One of "png" (default),
 "url", "request", "response", or "raw".}
 
-\item{path}{Character string specifying the path where to save the PNG file(s).
-Required when output = "png". For multiple symbols, "_SYMBOL.png" will be
-appended to the path.}
+\item{file_paths}{Character string specifying the path(s) where to save the PNG file(s)}
 }
 \value{
 Named list where each element depends on the output type:
@@ -37,6 +35,6 @@ Fetch cryptocurrency logos from CryptoCompare API
 get_crypto_logos(c("BTC", "ETH"), output = "url")
 
 # Download PNGs
-get_crypto_logos(c("BTC", "ETH"), output = "png", path = "logos/crypto")
+get_crypto_logos(c("BTC", "ETH"), output = "png", file_paths = "logos/crypto")
 }
 }

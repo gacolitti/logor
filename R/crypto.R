@@ -44,9 +44,7 @@ find_coin_data <- function(coins_data, symbol) {
 #' @param symbols Character vector of cryptocurrency symbols (e.g., "BTC", "ETH")
 #' @param output Character string specifying the output type. One of "png" (default),
 #'        "url", "request", "response", or "raw".
-#' @param path Character string specifying the path where to save the PNG file(s).
-#'        Required when output = "png". For multiple symbols, "_SYMBOL.png" will be
-#'        appended to the path.
+#' @inheritParams handle_png_paths
 #' @return Named list where each element depends on the output type:
 #'         - "url": URL string
 #'         - "request": httr2 request object
@@ -60,7 +58,7 @@ find_coin_data <- function(coins_data, symbol) {
 #' get_crypto_logos(c("BTC", "ETH"), output = "url")
 #'
 #' # Download PNGs
-#' get_crypto_logos(c("BTC", "ETH"), output = "png", path = "logos/crypto")
+#' get_crypto_logos(c("BTC", "ETH"), output = "png", file_paths = "logos/crypto")
 #' }
 get_crypto_logos <- function(symbols, output = c("png", "url", "request", "response", "raw"), file_paths = NULL) {
   output <- match.arg(output)
